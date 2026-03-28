@@ -1,0 +1,66 @@
+/* CogniBridge AI - Dyslexia Support Styles */
+
+body.dyslexia-mode {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+}
+
+.dyslexia-mode .panel,
+.dyslexia-mode .transcript,
+.dyslexia-mode .reader-content,
+.dyslexia-mode textarea,
+.dyslexia-mode input,
+.dyslexia-mode select {
+    letter-spacing: 0.15em;
+    line-height: 2;
+    word-spacing: 0.2em;
+}
+
+.dyslexia-mode .btn,
+.dyslexia-mode .control-btn {
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* Colored overlays for dyslexia support */
+.dyslexia-overlay-yellow {
+    background-color: rgba(255, 255, 0, 0.1) !important;
+}
+
+.dyslexia-overlay-blue {
+    background-color: rgba(0, 0, 255, 0.1) !important;
+}
+
+.dyslexia-overlay-green {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+}
+
+.dyslexia-overlay-red {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+/* Apply to specific elements */
+.transcript.dyslexia-overlay-yellow,
+.reader-content.dyslexia-overlay-yellow,
+textarea.dyslexia-overlay-yellow {
+    background-color: rgba(255, 255, 0, 0.1);
+}
+
+.transcript.dyslexia-overlay-blue,
+.reader-content.dyslexia-overlay-blue,
+textarea.dyslexia-overlay-blue {
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.transcript.dyslexia-overlay-green,
+.reader-content.dyslexia-overlay-green,
+textarea.dyslexia-overlay-green {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.transcript.dyslexia-overlay-red,
+.reader-content.dyslexia-overlay-red,
+textarea.dyslexia-overlay-red {
+    background-color: rgba(255, 0, 0, 0.1);
+}

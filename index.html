@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CogniBridge AI - Inclusive Classroom Support</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/dyslexia.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content app-header">
+            <div class="brand-block">
+                <h1 class="logo">CogniBridge AI</h1>
+                <p class="tagline">Inclusive classroom support</p>
+            </div>
+
+            <nav class="app-nav" aria-label="Primary navigation">
+                <button class="tab-btn active" data-tab="home-panel">Home</button>
+                <button class="tab-btn" data-tab="hearing-panel">Hearing Support</button>
+                <button class="tab-btn" data-tab="visual-panel">Visual Support</button>
+                <button class="tab-btn" data-tab="ai-panel">AI Tutor</button>
+                <button class="tab-btn" data-tab="query-panel">Query Center</button>
+            </nav>
+
+            <div class="accessibility-controls">
+                <button id="session-toggle" class="control-btn">Start Session</button>
+                <button id="theme-toggle" class="control-btn">Theme</button>
+                <button id="font-increase" class="control-btn">A+</button>
+                <button id="font-decrease" class="control-btn">A-</button>
+                <button id="dyslexia-toggle" class="control-btn">Dyslexia</button>
+                <button id="contrast-toggle" class="control-btn">Contrast</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container app-container">
+            <section class="panel home-panel">
+                <div class="home-hero">
+                    <div class="home-copy">
+                        <h2>Support for hearing and visual accessibility</h2>
+                    </div>
+
+                    <div class="home-status">
+                        <div class="status-card">
+                            <span>Session</span>
+                            <strong id="home-session-status">Ready</strong>
+                        </div>
+                        <div class="status-card">
+                            <span>Transcript</span>
+                            <strong id="home-word-status">0 words</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entry-grid">
+                    <article class="entry-card">
+                        <span class="entry-label">For Hearing-Impaired Students</span>
+                        <h3>Live transcript and sign output</h3>
+                        <p>Show speech-to-text and sign translation together in one focused workspace.</p>
+                        <button class="btn nav-shortcut" data-target="hearing-panel">Open Hearing Support</button>
+                    </article>
+
+                    <article class="entry-card">
+                        <span class="entry-label">For Visually-Impaired Students</span>
+                        <h3>Audio playback and reading support</h3>
+                        <p>Show text-to-speech and the reader in a cleaner, separate workflow.</p>
+                        <button class="btn nav-shortcut" data-target="visual-panel">Open Visual Support</button>
+                    </article>
+
+                    <article class="entry-card">
+                        <span class="entry-label">AI Assistance</span>
+                        <h3>AI Tutor</h3>
+                        <p>Use the current class transcript for summaries, quizzes, and guided questions.</p>
+                        <button class="btn nav-shortcut" data-target="ai-panel">Open AI Tutor</button>
+                    </article>
+
+                    <article class="entry-card">
+                        <span class="entry-label">Query Management</span>
+                        <h3>Prioritize and track student questions</h3>
+                        <p>Review live queries with priority, status, tags, suggestions, and quick analytics.</p>
+                        <button class="btn nav-shortcut" data-target="query-panel">Open Query Center</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel hearing-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="section-tag">Hearing Support</span>
+                        <h2>Live transcript and sign translation</h2>
+                    </div>
+                    <button class="btn small nav-shortcut" data-target="home-panel">Back Home</button>
+                </div>
+
+                <div class="workspace-grid">
+                    <section class="feature-card speech-panel">
+                        <h3>Live Speech-to-Text</h3>
+                        <div class="controls">
+                            <button id="start-speech" class="btn primary">Start Listening</button>
+                            <button id="stop-speech" class="btn secondary" disabled>Stop</button>
+                            <button id="auto-speech-toggle" class="btn small">Auto Read: OFF</button>
+                            <select id="language-select">
+                                <option value="en-US">English (US)</option>
+                                <option value="en-GB">English (UK)</option>
+                            </select>
+                        </div>
+                        <div id="transcript" class="transcript" contenteditable="true" aria-label="Live transcript"></div>
+                        <div class="transcript-controls">
+                            <button id="clear-transcript" class="btn small">Clear</button>
+                            <button id="download-transcript" class="btn small">Download</button>
+                            <span id="word-count">Words: 0</span>
+                            <span id="time-elapsed">Time: 00:00</span>
+                        </div>
+                    </section>
+
+                    <section class="feature-card sign-panel">
+                        <h3>Speech-to-Sign Translator</h3>
+                        <div class="controls">
+                            <button id="translate-signs" class="btn primary">Translate Transcript</button>
+                            <button id="auto-sign-toggle" class="btn small">Auto Signs: ON</button>
+                        </div>
+                        <div class="sign-translator-layout">
+                            <div class="sign-stage">
+                                <div class="sign-stage-header">
+                                    <span class="sign-chip">Live ISL Output</span>
+                                    <p id="sign-status" class="sign-status">Waiting for transcript...</p>
+                                </div>
+                                <div id="sign-display" class="sign-display">
+                                    <p class="sign-empty">Start a session and speak to see ISL signs and fingerspelling.</p>
+                                </div>
+                            </div>
+                            <div class="sign-history-panel">
+                                <h4>Recent Matches</h4>
+                                <div id="sign-history" class="sign-history"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section class="panel visual-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="section-tag">Visual Support</span>
+                        <h2>Audio playback and reader workspace</h2>
+                    </div>
+                    <button class="btn small nav-shortcut" data-target="home-panel">Back Home</button>
+                </div>
+
+                <div class="workspace-grid">
+                    <section class="feature-card tts-panel">
+                        <h3>Text-to-Speech</h3>
+                        <textarea id="tts-input" placeholder="Enter text to speak..." rows="4"></textarea>
+                        <div class="controls">
+                            <button id="speak-btn" class="btn primary">Speak</button>
+                            <button id="stop-tts-btn" class="btn secondary">Stop</button>
+                            <button id="speak-transcript" class="btn small">Speak Transcript</button>
+                            <label for="rate-slider">Speed:</label>
+                            <input type="range" id="rate-slider" min="0.5" max="2" step="0.1" value="1">
+                            <span id="rate-value">1x</span>
+                        </div>
+                        <select id="voice-select"></select>
+                    </section>
+
+                    <section class="feature-card reader-panel">
+                        <h3>Study Material Reader</h3>
+                        <div class="controls">
+                            <input type="file" id="file-input" accept=".pdf,.txt" class="file-input">
+                            <button id="upload-btn" class="btn primary">Upload & Read</button>
+                            <button id="stop-reading" class="btn secondary">Stop Reading</button>
+                        </div>
+                        <div id="reader-content" class="reader-content"></div>
+                        <div class="reader-controls">
+                            <button id="play-pause" class="btn small">Play</button>
+                            <label for="reading-rate">Speed:</label>
+                            <input type="range" id="reading-rate" min="0.5" max="2" step="0.1" value="1">
+                            <span id="reading-rate-value">1x</span>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <section class="panel ai-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="section-tag">AI Tutor</span>
+                        <h2>Ask about the current class</h2>
+                    </div>
+                    <button class="btn small nav-shortcut" data-target="home-panel">Back Home</button>
+                </div>
+
+                <section class="feature-card">
+                    <div id="chat-messages" class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-input-field" placeholder="Ask me anything about the class...">
+                        <button id="voice-chat-toggle" class="btn secondary" type="button" aria-pressed="false">Start Mic</button>
+                        <button id="send-chat" class="btn primary">Send</button>
+                    </div>
+                    <div class="ai-controls">
+                        <button id="summarize-btn" class="btn small">Summarize</button>
+                        <button id="quiz-btn" class="btn small">Quiz Me</button>
+                        <button id="key-points-btn" class="btn small">Key Points</button>
+                    </div>
+                </section>
+            </section>
+
+            <section class="panel query-panel">
+                <div class="panel-header">
+                    <div>
+                        <span class="section-tag">Query Center</span>
+                        <h2>Track and review student queries</h2>
+                    </div>
+                    <button class="btn small nav-shortcut" data-target="home-panel">Back Home</button>
+                </div>
+
+                <div class="query-grid">
+                    <section class="feature-card query-overview-card">
+                        <div class="query-summary-grid">
+                            <div class="status-card">
+                                <span>Total Queries</span>
+                                <strong id="query-total-count">0</strong>
+                            </div>
+                            <div class="status-card">
+                                <span>Pending</span>
+                                <strong id="query-pending-count">0</strong>
+                            </div>
+                            <div class="status-card">
+                                <span>High Priority</span>
+                                <strong id="query-high-count">0</strong>
+                            </div>
+                            <div class="status-card">
+                                <span>Avg Resolve Time</span>
+                                <strong id="query-resolution-time">0m</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="feature-card">
+                        <div class="query-section-head">
+                            <h3>Performance Analytics</h3>
+                            <span class="query-section-copy">Insights into learning gaps and class participation.</span>
+                        </div>
+                        <div class="analytics-grid">
+                            <article class="analytics-card">
+                                <span>Most Asked Topic</span>
+                                <strong id="analytics-top-topic">No data yet</strong>
+                                <p id="analytics-top-topic-count">0 repeated doubts</p>
+                            </article>
+                            <article class="analytics-card">
+                                <span>Student Engagement</span>
+                                <strong id="analytics-engagement">0 active students</strong>
+                                <p id="analytics-engagement-detail">No classroom activity yet</p>
+                            </article>
+                            <article class="analytics-card">
+                                <span>Resolution Rate</span>
+                                <strong id="analytics-resolution-rate">0%</strong>
+                                <p id="analytics-resolution-detail">No answered doubts yet</p>
+                            </article>
+                        </div>
+                        <div class="analytics-lists">
+                            <article class="analytics-panel">
+                                <h4>Weak Topics</h4>
+                                <div id="analytics-weak-topics" class="analytics-list"></div>
+                            </article>
+                            <article class="analytics-panel">
+                                <h4>Most Asked Questions</h4>
+                                <div id="analytics-top-questions" class="analytics-list"></div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="feature-card">
+                        <div class="query-composer">
+                            <input type="text" id="query-input-field" placeholder="Log a student query or support request...">
+                            <button id="add-query-btn" class="btn primary">Add Query</button>
+                        </div>
+                        <div class="query-filter-bar">
+                            <select id="query-status-filter">
+                                <option value="all">All Status</option>
+                                <option value="new">New</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                            <select id="query-priority-filter">
+                                <option value="all">All Priority</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <section class="feature-card">
+                        <div class="query-section-head">
+                            <h3>AI Query Suggestions</h3>
+                            <span class="query-section-copy">Built from the current classroom context.</span>
+                        </div>
+                        <div id="query-suggestions" class="query-suggestions"></div>
+                    </section>
+
+                    <section class="feature-card">
+                        <div class="query-section-head">
+                            <h3>Live Query Board</h3>
+                            <span class="query-section-copy">Track priority, category, and resolution status.</span>
+                        </div>
+                        <div id="query-list" class="query-list"></div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 CogniBridge AI</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/config.local.js"></script>
+    <script src="js/firebase.local.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/tts.js"></script>
+    <script src="js/sign-translator.js"></script>
+    <script src="js/query-center.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/reader.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* CogniBridge AI - Theme Styles */
+
+/* Default Theme (already in :root) */
+
+/* High Contrast Theme 1 - Yellow on Black */
+.high-contrast-1 {
+    --primary-bg: #000000;
+    --secondary-bg: #1a1a1a;
+    --accent-bg: #333333;
+    --primary-color: #ffff00;
+    --secondary-color: #ffffff;
+    --tertiary-color: #ff6b6b;
+    --text-color: #ffffff;
+    --text-secondary: #ffff00;
+    --border-color: #ffff00;
+}
+
+/* High Contrast Theme 2 - White on Blue */
+.high-contrast-2 {
+    --primary-bg: #000080;
+    --secondary-bg: #0000a0;
+    --accent-bg: #0000c0;
+    --primary-color: #ffffff;
+    --secondary-color: #ffff00;
+    --tertiary-color: #ff0000;
+    --text-color: #ffffff;
+    --text-secondary: #ffff00;
+    --border-color: #ffffff;
+}
+
+/* High Contrast Theme 3 - Black on White */
+.high-contrast-3 {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f0f0f0;
+    --accent-bg: #e0e0e0;
+    --primary-color: #000000;
+    --secondary-color: #333333;
+    --tertiary-color: #ff0000;
+    --text-color: #000000;
+    --text-secondary: #333333;
+    --border-color: #000000;
+}
+
+/* Dark Theme (default) */
+.dark-theme {
+    --primary-bg: #0a0a1a;
+    --secondary-bg: #1a1a2e;
+    --accent-bg: #16213e;
+    --primary-color: #00d4ff;
+    --secondary-color: #00ff88;
+    --tertiary-color: #ff6b6b;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #333355;
+}
+
+/* Light Theme */
+.light-theme {
+    --primary-bg: #f8f9fa;
+    --secondary-bg: #ffffff;
+    --accent-bg: #e9ecef;
+    --primary-color: #007bff;
+    --secondary-color: #28a745;
+    --tertiary-color: #dc3545;
+    --text-color: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+}
+
+/* Apply theme to body */
+body.high-contrast-1,
+body.high-contrast-2,
+body.high-contrast-3,
+body.dark-theme,
+body.light-theme {
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    color: var(--text-color);
+}
+
+/* Theme transition */
+body {
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Keyword highlighting */
+.keyword-highlight {
+    background-color: var(--secondary-color);
+    color: var(--primary-bg);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Dyslexia overlay colors */
+.overlay-yellow {
+    background-color: rgba(255, 255, 0, 0.1);
+}
+
+.overlay-blue {
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.overlay-green {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.overlay-red {
+    background-color: rgba(255, 0, 0, 0.1);
+}
